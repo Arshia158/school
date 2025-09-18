@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="fa" >
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>شمارش معکوس تا روز مدرسه</title>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+    
     body {
       background-color: #1e1e1e;
       margin: 0px;
@@ -13,7 +18,9 @@
       font-family: "Rubik", sans-serif;
       color: white;
       text-align: center;
+      direction: rtl;
     }
+    
     body input, body h1, body a, body span {
       color: #5a5a5a;
       font-family: "Rubik", sans-serif;
@@ -24,21 +31,22 @@
     
     .title {
       color: white;
-      font-size: 2em;
-      margin-bottom: 20px;
+      font-size: clamp(1.2rem, 5vw, 2rem);
+      margin-bottom: clamp(10px, 3vw, 20px);
       font-weight: 500;
+      padding: 0 15px;
     }
     
     .timer-labels {
       display: flex;
       justify-content: center;
-      margin-top: 10px;
+      margin-top: clamp(5px, 2vw, 10px);
     }
     
     .timer-label {
-      width: 80px;
+      width: clamp(20px, 8vw, 80px);
       color: white;
-      font-size: 1.2em;
+      font-size: clamp(0.8rem, 3vw, 1.2rem);
       opacity: 0.8;
     }
 
@@ -49,31 +57,41 @@
       height: 100vh;
       justify-content: center;
       width: 100vw;
-    }
-    #app #timer {
-      background: linear-gradient(to bottom right, #0263e1, #eb1836);
-      border-radius: 22px;
       padding: 20px;
     }
+    
+    #app #timer {
+      background: linear-gradient(to bottom right, #0263e1, #eb1836);
+      border-radius: clamp(8px, 2vw, 22px);
+      padding: clamp(10px, 3vw, 20px);
+      width: 100%;
+      max-width: 800px;
+    }
+    
     #app #timer #timer-text {
       align-items: center;
       background-color: #1e1e1e;
-      border-radius: 20px;
+      border-radius: clamp(6px, 2vw, 20px);
       display: flex;
-      margin: 4px;
-      padding: 0px 20px;
+      margin: clamp(2px, 1vw, 4px);
+      padding: 0 clamp(10px, 3vw, 20px);
+      overflow: hidden;
+      justify-content: center;
     }
+    
     #app #timer #timer-text .timer-char {
-      height: 150px;
+      height: clamp(40px, 15vw, 150px);
       position: relative;
       text-align: center;
-      width: 80px;
+      width: clamp(20px, 8vw, 80px);
     }
+    
     #app #timer #timer-text .timer-char.colon {
       color: white;
-      font-size: 8em;
-      line-height: 150px;
+      font-size: clamp(2em, 8vw, 8em);
+      line-height: clamp(40px, 15vw, 150px);
     }
+    
     #app #timer #timer-text .timer-char .timer-char-slider {
       display: flex;
       flex-direction: column;
@@ -81,102 +99,22 @@
       position: absolute;
       top: 0px;
       transition: top 200ms;
-      width: 80px;
+      width: clamp(20px, 8vw, 80px);
     }
+    
     #app #timer #timer-text .timer-char .timer-char-slider .timer-char-slider-option {
       color: white;
-      font-size: 4em;
-      height: 150px;
-      line-height: 150px;
+      font-size: clamp(1.25em, 5vw, 4em);
+      height: clamp(40px, 15vw, 150px);
+      line-height: clamp(40px, 15vw, 150px);
       opacity: 0.05;
       transition: opacity 400ms, font-size 400ms;
-      width: 80px;
+      width: clamp(20px, 8vw, 80px);
     }
+    
     #app #timer #timer-text .timer-char .timer-char-slider .timer-char-slider-option.active {
-      font-size: 8em;
+      font-size: clamp(2em, 8vw, 8em);
       opacity: 1;
-    }
-
-    @media (max-width: 800px) {
-      .title {
-        font-size: 1.5em;
-      }
-      
-      .timer-label {
-        width: 40px;
-        font-size: 1em;
-      }
-      
-      #app #timer {
-        border-radius: 16px;
-        padding: 15px;
-      }
-      #app #timer #timer-text {
-        border-radius: 14px;
-        margin: 4px;
-        padding: 0px 12px;
-      }
-      #app #timer #timer-text .timer-char {
-        height: 80px;
-        width: 40px;
-      }
-      #app #timer #timer-text .timer-char.colon {
-        font-size: 4em;
-        line-height: 80px;
-      }
-      #app #timer #timer-text .timer-char .timer-char-slider {
-        width: 40px;
-      }
-      #app #timer #timer-text .timer-char .timer-char-slider .timer-char-slider-option {
-        font-size: 2em;
-        height: 80px;
-        line-height: 80px;
-        width: 40px;
-      }
-      #app #timer #timer-text .timer-char .timer-char-slider .timer-char-slider-option.active {
-        font-size: 4em;
-      }
-    }
-    @media (max-width: 400px) {
-      .title {
-        font-size: 1.2em;
-        margin-bottom: 15px;
-      }
-      
-      .timer-label {
-        width: 20px;
-        font-size: 0.8em;
-      }
-      
-      #app #timer {
-        border-radius: 8px;
-        padding: 10px;
-      }
-      #app #timer #timer-text {
-        border-radius: 6px;
-        margin: 2px;
-        padding: 0px 10px;
-      }
-      #app #timer #timer-text .timer-char {
-        height: 40px;
-        width: 20px;
-      }
-      #app #timer #timer-text .timer-char.colon {
-        font-size: 2em;
-        line-height: 40px;
-      }
-      #app #timer #timer-text .timer-char .timer-char-slider {
-        width: 20px;
-      }
-      #app #timer #timer-text .timer-char .timer-char-slider .timer-char-slider-option {
-        font-size: 1.25em;
-        height: 40px;
-        line-height: 40px;
-        width: 20px;
-      }
-      #app #timer #timer-text .timer-char .timer-char-slider .timer-char-slider-option.active {
-        font-size: 2em;
-      }
     }
   </style>
 </head>
@@ -286,7 +224,7 @@
     const App = () => {
         return (
             React.createElement("div", { id: "app" },
-                React.createElement("h1", { className: "title" }, "شمارش معکوس تا روز بدبختی(مدرسه)"),
+                React.createElement("h1", { className: "title" }, "شمارش معکوس تا روز مدرسه"),
                 React.createElement(CountdownTimer, null)
             )
         );
